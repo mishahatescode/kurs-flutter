@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Pinned to match .fvmrc. Bump both together, never just one —
       # a version split between the two machines is the top cause of
