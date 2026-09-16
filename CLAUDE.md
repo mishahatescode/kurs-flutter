@@ -22,6 +22,12 @@ the line, say so and describe the edit rather than making it — the other perso
 is probably editing that file right now, and merge conflicts in Dart are
 cheaper to avoid than to resolve.
 
+This is enforced, not just agreed. `.github/CODEOWNERS` makes each person the
+required reviewer of the *other* side's paths, so a pull request that edits the
+other side's files needs an approval its own author cannot give — it will not
+merge without an admin bypass. The one shared area is `test/ui/`: either side
+may write widget tests.
+
 ### The Windows side cannot build or run iOS
 
 No simulator, no codesigning, no `flutter build ipa`. This is a hard platform
@@ -51,7 +57,8 @@ Windows and the division of labour stops working.
 - **Everything lives in git.** No zip handoffs, no "send me the folder." This
   project's predecessor lost a fork's worth of work exactly that way — see
   `../_Archive/README.md`.
-- Branch off `main`, open a PR, CI green + one review to merge.
+- Branch off `main` and open a PR. It merges once CI is green and the other
+  person approves; CODEOWNERS requests that review automatically.
 - **Fixing a bug? Write the failing test first**, in `test/core/` or `test/ui/`,
   then fix it. A bug fix PR with no test is incomplete.
 - Run `dart format .` before pushing. CI fails on unformatted code, and it is
