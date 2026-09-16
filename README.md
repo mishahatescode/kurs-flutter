@@ -26,8 +26,11 @@ flutter test
 | Owns | `lib/ui/`, `assets/`, `ios/` | `lib/core/`, `test/` |
 | Does | UI/UX, release, App Store | tests, bug fixing, logic |
 
-Enforced by `.github/CODEOWNERS`. The full reasoning is in `CLAUDE.md`, which
-both Claude Code sessions read automatically.
+Each of you reviews the other's side. `.github/CODEOWNERS` requests that review
+automatically, and a pull request can't merge until the other person approves —
+so a PR that edits the other side's files is blocked. Ask instead. Widget tests
+in `test/ui/` are shared. The full reasoning is in `CLAUDE.md`, which both
+Claude Code sessions read automatically.
 
 ### Running it on Windows
 

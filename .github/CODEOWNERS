@@ -1,23 +1,30 @@
-# Who owns what. GitHub auto-requests a review from the owner when a PR
-# touches their paths.
+# Who REVIEWS what — not who writes it.
 #
-# Both people need push access or their entry is ignored silently — GitHub
-# does not warn when it cannot resolve an owner.
+# Each of you writes one side of the app and reviews the other's, so the Mac
+# side's paths name LowTechPotato and the Windows side's name mishahatescode.
+# GitHub never counts an author's approval of their own pull request: owning
+# the paths you usually edit would make every one of your own PRs unmergeable.
+#
+# With "require review from Code Owners" on, a PR that edits the OTHER side's
+# paths needs an approval only its author could give, so it will not merge
+# without an admin bypass (mishahatescode only). That is the split doing its
+# job: to change the other side, ask the other person.
+#
+# The last matching line wins.
 
-# Default owner for anything not matched below.
-*                       @mishahatescode
+# Anything not matched below — pubspec, CI, docs, android/ — either can approve.
+*                       @mishahatescode @LowTechPotato
 
-# ── UI / design / assets — Mac side ──────────────────────────────────────────
-/lib/ui/                @mishahatescode
-/lib/main.dart          @mishahatescode
-/assets/                @mishahatescode
+# ── Written on the Mac, reviewed from Windows ────────────────────────────────
+/lib/ui/                @LowTechPotato
+/lib/main.dart          @LowTechPotato
+/assets/                @LowTechPotato
+/ios/                   @LowTechPotato
 
-# ── Logic and tests — PC side ────────────────────────────────────────────────
-/lib/core/              @LowTechPotato
-/test/                  @LowTechPotato
+# ── Written on Windows, reviewed on the Mac ──────────────────────────────────
+/lib/core/              @mishahatescode
+/test/                  @mishahatescode
 
-# ── Release surface — Mac only, never touched from Windows ───────────────────
-# Signing, provisioning and App Store Connect all require macOS.
-/ios/                   @mishahatescode
-/pubspec.yaml           @mishahatescode
-/.github/workflows/     @mishahatescode
+# Widget tests go with whichever side's change they cover — a Mac-side UI fix
+# starts with a failing widget test, per CLAUDE.md — so either can approve.
+/test/ui/               @mishahatescode @LowTechPotato
