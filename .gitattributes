@@ -1,0 +1,40 @@
+# One repo, two operating systems. Normalise line endings in git so a Windows
+# checkout and a macOS checkout never produce whole-file diffs.
+* text=auto eol=lf
+
+# Scripts that must keep their platform's endings regardless of the above.
+*.sh   text eol=lf
+*.bat  text eol=crlf
+*.ps1  text eol=crlf
+
+# Xcode project files: never normalise, never diff-merge. Only the Mac side
+# edits these (see .github/CODEOWNERS) — a conflict here is very painful.
+*.pbxproj    -text
+*.xcworkspacedata -text
+*.xcscheme   -text
+
+# Gradle wrapper must stay byte-exact.
+gradlew      text eol=lf
+gradlew.bat  text eol=crlf
+gradle-wrapper.jar binary
+
+# Binary assets.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.ttf  binary
+*.otf  binary
+*.woff binary
+*.woff2 binary
+*.pdf  binary
+*.zip  binary
+*.p12  binary
+*.mobileprovision binary
+*.jks  binary
+*.keystore binary
+
+# Generated — collapse in PR diffs so reviews stay readable.
+pubspec.lock linguist-generated=true -diff

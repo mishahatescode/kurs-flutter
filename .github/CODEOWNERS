@@ -1,0 +1,25 @@
+# Who owns what. GitHub auto-requests a review from the owner when a PR
+# touches their paths.
+#
+# ⚠️  REPLACE @FRIEND_GITHUB_USERNAME BELOW WITH THE REAL HANDLE.
+#     GitHub silently ignores entries naming a user it cannot resolve —
+#     a typo here fails quietly and nobody gets review requests.
+#     Both people must have push access to the repo or the entry is ignored.
+
+# Default owner for anything not matched below.
+*                       @mishahatescode
+
+# ── UI / design / assets — Mac side ──────────────────────────────────────────
+/lib/ui/                @mishahatescode
+/lib/main.dart          @mishahatescode
+/assets/                @mishahatescode
+
+# ── Logic and tests — PC side ────────────────────────────────────────────────
+/lib/core/              @FRIEND_GITHUB_USERNAME
+/test/                  @FRIEND_GITHUB_USERNAME
+
+# ── Release surface — Mac only, never touched from Windows ───────────────────
+# Signing, provisioning and App Store Connect all require macOS.
+/ios/                   @mishahatescode
+/pubspec.yaml           @mishahatescode
+/.github/workflows/     @mishahatescode
